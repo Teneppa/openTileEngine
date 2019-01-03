@@ -43,6 +43,11 @@ void drawTile(dataType x, dataType y) {
 	oled.drawBitmap(x, y, bitmap_block, 8, 8, 1);
 }
 
+/* Piirtofunktio pelaajalle */
+void drawPlayer(dataType x, dataType y) {
+	oled.drawBitmap(x, y, bitmap_mushroom, 8, 8, 1);
+}
+
 #define USE_DEBUGGING
 //#undef USE_DEBUGGING
 
@@ -55,10 +60,11 @@ void setup() {
 
 	beginDisplay();			// M‰‰rit‰ OLED -juttuja
 
-	engine.assignDrawingFunction(drawTile);		// M‰‰rit‰ piirtofunktio
+	engine.assignDrawingFunction(drawTile);		// M‰‰rit‰ piirtofunktio palikoille
+	mGame.assignDrawingFunction(drawPlayer);	// M‰‰rit‰ piirtofunktio pelaajalle
 
-	mGame.initialize(8, 8, bitmap_mushroom);	// Player width, height and bitmap
-	mGame.loadMap(mushMap);					// Load map
+	mGame.initialize(8, 8);	// Player width and height
+	mGame.loadMap(mushMap);	// Lataa kartta muistiin
 }
 
 void loop() {

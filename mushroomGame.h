@@ -18,7 +18,9 @@ struct mushroomGame {
 	gameObject player;				// Luo olio pelaajalle
 	tilengine * localEngine;		// Luo osoitin tile-enginelle
 
-	void initialize(dataType width, dataType height, bitmapDataType * bitmap);
+	void initialize(dataType width, dataType height);
+	void assignDrawingFunction(void(*getFunctionPointer)(dataType x, dataType y));	// Hae osoitin piirtofunktioon
+	void(*pointToPlayerDrawingFunction)(dataType, dataType);	// Osoitin piirtofunktioon
 
 	mushroomGame(tilengine * engine);
 	void draw();

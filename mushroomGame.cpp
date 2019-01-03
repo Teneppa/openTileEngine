@@ -14,15 +14,20 @@ mushroomGame::mushroomGame(tilengine * engine) {
 }
 
 /*--  --*/
-void mushroomGame::initialize(dataType width, dataType height, bitmapDataType * bitmap) {
-	player.bitmap = bitmap;
+void mushroomGame::initialize(dataType width, dataType height) {
 	player.width = width;
 	player.height = height;
 }
 
 /*--  --*/
+void mushroomGame::assignDrawingFunction(void(*getFunctionPointer)(dataType x, dataType y)) {
+	pointToPlayerDrawingFunction = getFunctionPointer;
+}
+
+/*--  --*/
 void mushroomGame::draw() {
-	localEngine->drawMap();
+	localEngine->drawMap();	// Piirrä kartta
+	pointToPlayerDrawingFunction(player.x, player.y);	// Piirrä pelaaja
 }
 
 /*--  --*/
