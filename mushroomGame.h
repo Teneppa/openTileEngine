@@ -12,11 +12,11 @@
 #include "tilengine.h"
 #include "variableType.h"
 #include "gameObject.h"
+#include "bitmaps.h"
 
 struct mushroomGame {
-
-	gameObject * player;
-	tilengine * localEngine;
+	gameObject player;				// Luo olio pelaajalle
+	tilengine * localEngine;		// Luo osoitin tile-enginelle
 
 	void initialize(dataType width, dataType height, bitmapDataType * bitmap);
 

@@ -23,8 +23,6 @@ struct gameObject : sprite {
 	dataType getWidth();  // N‰ill‰ voi pyyt‰‰ olion koon
 	dataType getHeight();
 
-	dataType returnBitmap(bitmapDataType &bitmap);
-
 	bitmapDataType * bitmap;
 
 	dataType x, y;    // Objektin koordinaatit

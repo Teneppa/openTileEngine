@@ -16,10 +16,6 @@ gameObject::~gameObject() {
 
 }
 
-dataType gameObject::returnBitmap(bitmapDataType &bitmap) {
-
-}
-
 dataType gameObject::getHeight() {
 
 }

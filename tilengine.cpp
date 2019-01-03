@@ -1,9 +1,13 @@
-// 
-// 
-// 
+/*<<//>>\\<<//>>\\<<//>>\\<<//>>\\<<//>>\\<<//>>\\<<//>>\\<<//>>\\<<//>>\\<<//>>\\<<//>>\\<<//>>\\<<//>>\\<<//>>\\<<//>>\\<<//>>\\<<//>>\\<<//>>\\<<//>>\\*/
+/*<<																																				    >>*/
+/*<<										T‰m‰ kirjasto hoitaa tilemap -muodossa olevien karttojen piirt‰misen										>>*/
+/*<<									  T‰ss‰ kirjastossa on myˆs checkTile-funktio jota voi k‰ytt‰‰ tˆrm‰yksiss‰										>>*/
+/*<<																																				    >>*/
+/*<<//>>\\<<//>>\\<<//>>\\<<//>>\\<<//>>\\<<//>>\\<<//>>\\<<//>>\\<<//>>\\<<//>>\\<<//>>\\<<//>>\\<<//>>\\<<//>>\\<<//>>\\<<//>>\\<<//>>\\<<//>>\\<<//>>\\*/
 
 #include "tilengine.h"
 
+/*-- Kun luot olion, tallenna leveys ja korkeus sek‰ varaa muistia kartalle --*/
 tilengine::tilengine(dataType getEngineWidth, dataType getEngineHeight, dataType getTileWidth, dataType getTileHeight) {
 	
 	tilecount = getEngineWidth * getEngineHeight / 16;	// Laske tarvittavan tilan m‰‰r‰
@@ -14,26 +18,27 @@ tilengine::tilengine(dataType getEngineWidth, dataType getEngineHeight, dataType
 
 }
 
+/*-- Kun olio tuhotaan, vapauta kartan viem‰ muisti --*/
 tilengine::~tilengine() {
 	delete[] mapBuffer;			// Vapauta kartan viem‰ muisti
 }
 
-/* T‰ll‰ funktiolla voi m‰‰ritt‰‰ tilenginen k‰ytt‰m‰n piirtofunktion palikoille */
+/*-- T‰ll‰ funktiolla voi m‰‰ritt‰‰ tilenginen k‰ytt‰m‰n piirtofunktion palikoille --*/
 void tilengine::assignDrawingFunction(void(*getFunctionPointer)(dataType x, dataType y)) {
 	pointToTileDrawingFunction = getFunctionPointer;
 }
 
-/* T‰ll‰ funktiolla voi tarkistaa onko kyseisess‰ koordinaatissa palikkaa */
+/*-- T‰ll‰ funktiolla voi tarkistaa onko kyseisess‰ koordinaatissa palikkaa --*/
 inline bool tilengine::checkTile(dataType getX, dataType getY) {
 
 }
 
-/* T‰ll‰ funktiolla ladataan kartta mapBufferiin */
+/*-- T‰ll‰ funktiolla ladataan kartta mapBufferiin --*/
 void tilengine::loadMap(mapDataType *getMap) {
 	memcpy(mapBuffer, getMap, sizeof(uint16_t)*width * height / 16);	// Siirr‰ kartta karttapuskuriin
 }
 
-/* T‰m‰ funktio piirt‰‰ kartan */
+/*-- T‰m‰ funktio piirt‰‰ kartan --*/
 void tilengine::drawMap() {
 	for (dataType y = 0; y < height; y++) {
 		for (dataType x = 0; x < width; x++) {
