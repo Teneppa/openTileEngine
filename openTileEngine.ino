@@ -6,6 +6,7 @@
 
 /*--  --*/
 
+#include "physics.h"
 #include "mushroomGame.h"
 #include "gameEvent.h"
 #include <Adafruit_SSD1306.h>
@@ -48,15 +49,7 @@ void drawPlayer(dataType x, dataType y) {
 	oled.drawBitmap(x, y, bitmap_mushroom, 8, 8, 1);
 }
 
-#define USE_DEBUGGING
-//#undef USE_DEBUGGING
-
 void setup() {
-
-#ifdef USE_DEBUGGING
-	Serial.begin(115200);
-	Serial.println(">Starting up...");
-#endif
 
 	beginDisplay();			// M‰‰rit‰ OLED -juttuja
 

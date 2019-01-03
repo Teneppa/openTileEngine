@@ -57,6 +57,9 @@
     <ClInclude Include="bitmaps.h">
       <Filter>Resource Files\Games</Filter>
     </ClInclude>
+    <ClInclude Include="physics.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="gameObject.cpp">
@@ -73,6 +76,9 @@
     </ClCompile>
     <ClCompile Include="mushroomGame.cpp">
       <Filter>Resource Files\Games</Filter>
+    </ClCompile>
+    <ClCompile Include="physics.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
