@@ -16,8 +16,8 @@ void mushroomGame::initialize(dataType width, dataType height, bitmapDataType * 
 	player->height = height;
 }
 
-void mushroomGame::draw(tilengine &engine) {
-
+void mushroomGame::draw(tilengine * engine) {
+	engine->drawMap();
 }
 
 void mushroomGame::loadMap(uint16_t * map) {

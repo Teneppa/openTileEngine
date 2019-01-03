@@ -20,6 +20,11 @@ const uint8_t OLED_RESET = 8;
 
 Adafruit_SSD1306 oled(OLED_DC, OLED_RESET, OLED_CS);
 
+void beginDisplay() {
+	oled.begin(SSD1306_SWITCHCAPVCC); //use internal voltage generator
+	oled.setRotation(2); //set rotation to 2
+}
+
 /*<<//>>\\<<//>>\\<<//>>\\<<//>>\\<<//>>\\<<//>>\\<<//>>\\<<//>>\\<<//>>\\<<//>>\\<<//>>*/
 
 tilengine engine(16, 8, 8, 8);	// tilengine(kartan leveys, kartan korkeus,
@@ -27,13 +32,28 @@ tilengine engine(16, 8, 8, 8);	// tilengine(kartan leveys, kartan korkeus,
 
 #include "mushroomGame.h"
 #include "bitmaps.h"
+#include "levels.h"
 
 mushroomGame * mGame;
 
+void drawTile(dataType x, dataType y) {
+	oled.drawBitmap(x, y, bitmap_mushroom, 8, 8, 1);
+}
+
 void setup() {
+	beginDisplay();			// Määritä OLED
+
+	engine.assignDrawingFunction(drawTile);		// Määritä piirtofunktio
+
 	mGame->initialize(8, 8, bitmap_mushroom);	// Player width, height and bitmap
+	mGame->loadMap(mushMap);					// Load map
 }
 
 void loop() {
-	mGame->draw(engine);
+	oled.clearDisplay();
+
+	mGame->draw(&engine);						// Draw
+	oled.drawPixel(2, 2, 1);
+
+	oled.display();
 }
