@@ -15,7 +15,10 @@ struct tilengine {
 	tilengine(dataType getEngineWidth, dataType getEngineHeight, dataType getTileWidth, dataType getTileHeight);
 	~tilengine();
 
+	void assignDrawingFunction(void(*getFunctionPointer)(dataType x, dataType y));
 	void constructMap(dataType width, dataType height, dataType variableSize);	// M‰‰rittele kartan koko ja tallennusmuoto
+
+	void(*pointToTileDrawingFunction)(dataType, dataType);	// Hae osoitin piirtofunktioon
 
 	inline bool checkTile(dataType getX, dataType getY);
 

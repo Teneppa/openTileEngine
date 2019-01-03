@@ -28,7 +28,7 @@ uint16_t mushMap[8] = {
 
 struct mushroomGame {
 
-	gameObject player;
+	gameObject * player;
 
 	void initialize(dataType width, dataType height, bitmapDataType * bitmap);
 

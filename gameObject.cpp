@@ -16,7 +16,7 @@ gameObject::~gameObject() {
 
 }
 
-dataType gameObject::returnBitmap(dataType &bitmap) {
+dataType gameObject::returnBitmap(bitmapDataType &bitmap) {
 
 }
 

@@ -12,6 +12,10 @@ tilengine::~tilengine() {
 
 }
 
+void tilengine::assignDrawingFunction(void(*getFunctionPointer)(dataType x, dataType y)) {
+	pointToTileDrawingFunction = getFunctionPointer;
+}
+
 /* Tällä funktiolla voi tarkistaa onko kyseisessä koordinaatissa palikkaa */
 inline bool tilengine::checkTile(dataType getX, dataType getY) {
 
