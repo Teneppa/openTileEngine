@@ -13,10 +13,12 @@
 
 struct tilengine {
 	tilengine(dataType getEngineWidth, dataType getEngineHeight, dataType getTileWidth, dataType getTileHeight);
-	~tilengine();
+	~tilengine();	// Poista karttapuskuri kun t‰t‰ ei en‰‰ tarvita
+
+	mapDataType * mapBuffer;       // Puskuri kartalle
 
 	void assignDrawingFunction(void(*getFunctionPointer)(dataType x, dataType y));
-	void loadMap(dataType * getMap);	// M‰‰rittele kartan koko ja tallennusmuoto
+	void loadMap(mapDataType * getMap);	// M‰‰rittele kartan koko ja tallennusmuoto
 
 	void(*pointToTileDrawingFunction)(dataType, dataType);	// Hae osoitin piirtofunktioon
 
@@ -28,13 +30,12 @@ struct tilengine {
 	dataType height;
 	dataType tileWidth;
 	dataType tileheight;
+	dataType tilecount;
 
 	private:
 		dataType mapWidth;
 		dataType mapHeight;
 		dataType mapVariableSize;
-
-		dataType * map;
 };
 
 #endif

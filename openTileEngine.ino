@@ -34,26 +34,35 @@ tilengine engine(16, 8, 8, 8);	// tilengine(kartan leveys, kartan korkeus,
 #include "bitmaps.h"
 #include "levels.h"
 
-mushroomGame * mGame;
+mushroomGame mGame(&engine);
 
+/* Piirtofunktio palikalle */
 void drawTile(dataType x, dataType y) {
-	oled.drawBitmap(x, y, bitmap_mushroom, 8, 8, 1);
+	oled.drawBitmap(x, y, bitmap_block, 8, 8, 1);
 }
 
+#define USE_DEBUGGING
+//#undef USE_DEBUGGING
+
 void setup() {
+
+#ifdef USE_DEBUGGING
+	Serial.begin(115200);
+	Serial.println(">Starting up...");
+#endif
+
 	beginDisplay();			// Määritä OLED
 
 	engine.assignDrawingFunction(drawTile);		// Määritä piirtofunktio
 
-	mGame->initialize(8, 8, bitmap_mushroom);	// Player width, height and bitmap
-	mGame->loadMap(mushMap);					// Load map
+	mGame.initialize(8, 8, bitmap_mushroom);	// Player width, height and bitmap
+	mGame.loadMap(mushMap);					// Load map
 }
 
 void loop() {
 	oled.clearDisplay();
 
-	mGame->draw(&engine);						// Draw
-	oled.drawPixel(2, 2, 1);
+	mGame.draw();		// Draw
 
 	oled.display();
 }

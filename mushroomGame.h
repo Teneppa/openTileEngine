@@ -16,12 +16,13 @@
 struct mushroomGame {
 
 	gameObject * player;
+	tilengine * localEngine;
 
 	void initialize(dataType width, dataType height, bitmapDataType * bitmap);
 
-	mushroomGame();
-	void draw(tilengine * engine);
-	void loadMap(uint16_t * map);
+	mushroomGame(tilengine * engine);
+	void draw();
+	void loadMap(mapDataType * m);
 };
 
 #endif

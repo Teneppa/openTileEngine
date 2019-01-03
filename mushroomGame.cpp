@@ -5,9 +5,11 @@
 #include "mushroomGame.h"
 #include "variableType.h"
 
-mushroomGame::mushroomGame() {
+mushroomGame::mushroomGame(tilengine * engine) {
 	player->x = 8;
 	player->y = 8;
+
+	localEngine = engine;
 }
 
 void mushroomGame::initialize(dataType width, dataType height, bitmapDataType * bitmap) {
@@ -16,10 +18,10 @@ void mushroomGame::initialize(dataType width, dataType height, bitmapDataType * 
 	player->height = height;
 }
 
-void mushroomGame::draw(tilengine * engine) {
-	engine->drawMap();
+void mushroomGame::draw() {
+	localEngine->drawMap();
 }
 
-void mushroomGame::loadMap(uint16_t * map) {
-
+void mushroomGame::loadMap(mapDataType * m) {
+	localEngine->loadMap(m);
 }
