@@ -1,11 +1,11 @@
-// Visual Micro is in vMicro>General>Tutorial Mode
-// 
 /*
     Name:       openTileEngine.ino
     Created:	3.1.2019 12.03.58
     Author:     Teemu Laurila
 */
 
+#include "mushroomGame.h"
+#include "gameEvent.h"
 #include <Adafruit_SSD1306.h>
 #include <Adafruit_GFX.h>
 #include "variableType.h"
@@ -25,14 +25,14 @@ Adafruit_SSD1306 oled(OLED_DC, OLED_RESET, OLED_CS);
 tilengine engine(16, 8, 8, 8);	// tilengine(kartan leveys, kartan korkeus,
 								//			 laata leveys, laatan korkeus);
 
-struct mushroomGame : tilengine {
+#include "mushroomGame.h"
 
-};
+mushroomGame * mGame;
 
 void setup() {
-
+	
 }
 
 void loop() {
-
+	mGame->draw(engine);
 }

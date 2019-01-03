@@ -19,6 +19,9 @@
     <Filter Include="Header Files\Engine">
       <UniqueIdentifier>{a044216b-2eb3-46ff-beb5-c091dbf60889}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Games">
+      <UniqueIdentifier>{7e6c22eb-4b71-464d-9ed9-c93ff9ef7e5b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="openTileEngine.ino" />
@@ -42,6 +45,15 @@
     <ClInclude Include="variableType.h">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
+    <ClInclude Include="gameEvent.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="mushroomGame.h">
+      <Filter>Resource Files\Games</Filter>
+    </ClInclude>
+    <ClInclude Include="mushroomMaps.h">
+      <Filter>Resource Files\Games</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="gameObject.cpp">
@@ -52,6 +64,12 @@
     </ClCompile>
     <ClCompile Include="tilengine.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gameEvent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mushroomGame.cpp">
+      <Filter>Resource Files\Games</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
