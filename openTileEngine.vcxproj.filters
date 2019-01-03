@@ -54,6 +54,9 @@
     <ClInclude Include="mushroomMaps.h">
       <Filter>Resource Files\Games</Filter>
     </ClInclude>
+    <ClInclude Include="bitmaps.h">
+      <Filter>Resource Files\Games</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="gameObject.cpp">

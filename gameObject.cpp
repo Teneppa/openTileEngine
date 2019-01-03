@@ -4,7 +4,11 @@
 
 #include "gameObject.h"
 
-gameObject::gameObject(dataType width, dataType height, dataType * bitmap) {
+gameObject::gameObject() {
+
+}
+
+gameObject::gameObject(dataType width, dataType height, bitmapDataType * bitmap) {
 
 }
 

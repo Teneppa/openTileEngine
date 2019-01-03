@@ -16,7 +16,8 @@
 struct gameObject : sprite {
 	// Julkiset funktiot/muuttujat
 
-	gameObject(dataType width, dataType height, dataType * bitmap); // Kun olio luodaan
+	gameObject();
+	gameObject(dataType width, dataType height, bitmapDataType * bitmap); // Kun olio luodaan
 	~gameObject();  // Kun olio tuhotaan
 
 	dataType getWidth();  // N‰ill‰ voi pyyt‰‰ olion koon
@@ -27,6 +28,7 @@ struct gameObject : sprite {
 	dataType * bitmap;
 
 	dataType x, y;    // Objektin koordinaatit
+	dataType width, height;	// Objektin leveys ja korkeus
 };
 
 #endif

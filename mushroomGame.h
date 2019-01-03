@@ -26,14 +26,12 @@ uint16_t mushMap[8] = {
 };
 */
 
-// Mushroom player 8x8
-const unsigned char PROGMEM mushroom[] = {
-  0x3C, 0x5A, 0x5A, 0xFF, 0x24, 0x24, 0x24, 0x66,
-};
-
-gameObject player(8, 8, mushroom);
-
 struct mushroomGame {
+
+	gameObject player;
+
+	void initialize(dataType width, dataType height, bitmapDataType * bitmap);
+
 	mushroomGame();
 	void draw(tilengine &engine);
 	void loadMap(uint16_t * map);

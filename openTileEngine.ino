@@ -26,11 +26,12 @@ tilengine engine(16, 8, 8, 8);	// tilengine(kartan leveys, kartan korkeus,
 								//			 laata leveys, laatan korkeus);
 
 #include "mushroomGame.h"
+#include "bitmaps.h"
 
 mushroomGame * mGame;
 
 void setup() {
-	
+	mGame->initialize(8, 8, bitmap_mushroom);	// Player width, height and bitmap
 }
 
 void loop() {
