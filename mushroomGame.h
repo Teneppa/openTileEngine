@@ -14,11 +14,13 @@
 #include "gameObject.h"
 #include "bitmaps.h"
 #include "physics.h"
+#include "inputOutput.h"
 
 struct mushroomGame {
 	gameObject	player;				// Luo olio pelaajalle
 	physics		playerPhysics;		// Luo fysiikkaolio pelaajan fysiikkojen laskemiseen
 	tilengine * localEngine;		// Luo osoitin tile-enginelle
+	inputOutput io;					// Luo olio näppäimiä hallitsevalle kirjastolle
 
 	void initialize(dataType width, dataType height);
 	void assignDrawingFunction(void(*getFunctionPointer)(dataType x, dataType y));	// Hae osoitin piirtofunktioon

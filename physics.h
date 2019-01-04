@@ -14,11 +14,10 @@
 
 /* Tämä luokka on pyhitetty fysiikoiden laskemiseen */
 struct physics {
-	void calculateGravity(gameObject * object, dataType acceleration, longDataType time);	// Objekti jolle fysiikat lasketaan, kiihtyvyys
+	void calculateGravity(gameObject * object, longDataType time);	// Objekti jolle fysiikat lasketaan, kiihtyvyys
 																							// ja kulunut aika edellisestä päivityksestä
 
-	floatDataType gravity = 0.5f;
+	floatDataType gravity = 40.0f;
 };
 
 #endif
-

@@ -34,7 +34,7 @@ void mushroomGame::run() {
 		localEngine->checkCollision(&player);	// Laske törmäykset pelaajalle
 
 		if (!localEngine->COLLISION_BELOW) {
-			playerPhysics.calculateGravity(&player, 0.2, millis() - oldUpdateTime);		// Laske painovoima pelaajalle
+			playerPhysics.calculateGravity(&player, millis() - oldUpdateTime);		// Laske painovoima pelaajalle
 		}
 
 		oldUpdateTime = millis();
