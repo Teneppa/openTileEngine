@@ -16,6 +16,8 @@
 struct physics {
 	void calculateGravity(gameObject * object, dataType acceleration);
 
+	floatDataType gravity = 0.5f;
+
 };
 
 #endif

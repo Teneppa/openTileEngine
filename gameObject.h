@@ -23,12 +23,11 @@ struct gameObject : sprite {
 	dataType getWidth();  // N‰ill‰ voi pyyt‰‰ olion koon
 	dataType getHeight();
 
-	bitmapDataType * bitmap;
+	bitmapDataType * bitmap;		// Osoitin objektin bittikarttaan
 
-	dataType x, y;    // Objektin koordinaatit
-	floatDataType hSpeed, vSpeed;
-	dataType width, height;	// Objektin leveys ja korkeus
+	dataType x, y;					// Objektin koordinaatit
+	floatDataType hSpeed, vSpeed;	// Objektin nopeus vaaka- ja pystysuunnassa
+	dataType width, height;			// Objektin leveys ja korkeus
 };
 
 #endif
-
