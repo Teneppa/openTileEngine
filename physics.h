@@ -10,10 +10,11 @@
 #endif
 
 #include "variableType.h"
+#include "gameObject.h"
 
 /* Tämä luokka on pyhitetty fysiikoiden laskemiseen */
 struct physics {
-	void calculateGravity(dataType &ySpeed, dataType acceleration);
+	void calculateGravity(gameObject * object, dataType acceleration);
 
 };
 

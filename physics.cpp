@@ -5,6 +5,6 @@
 #include "physics.h"
 
 /* Laske painovoiman vaikutus */
-void physics::calculateGravity(dataType &ySpeed, dataType acceleration) {
-	ySpeed += acceleration;	// Lis‰‰ kiihtyvyys y-akselin suuntaiseen nopeuteen
+void physics::calculateGravity(gameObject * object, dataType acceleration) {
+	object->vSpeed += acceleration;	// Lis‰‰ kiihtyvyys y-akselin suuntaiseen nopeuteen
 }
