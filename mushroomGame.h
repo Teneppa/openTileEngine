@@ -27,8 +27,6 @@ struct mushroomGame {
 	longDataType oldUpdateTime = 0;		// Milloin peli on viimeksi päivitetty
 	longDataType oldMushroomUpdateTime = 0;
 
-	bool checkCollisionBelow();
-
 	mushroomGame(tilengine * engine);
 	void run();		// Hoida piirtäminen, fysiikat ja muut tässä funktiossa
 	void draw();

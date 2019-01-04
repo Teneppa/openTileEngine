@@ -26,8 +26,8 @@ void mushroomGame::assignDrawingFunction(void(*getFunctionPointer)(dataType x, d
 
 /*-- Pelin pääfunktio --*/
 void mushroomGame::run() {
-	/* Päivitä pelifunktiota n. 62,5 kertaa sekunnissa */
 
+	/* Päivitä pelifunktiota n. 62,5 kertaa sekunnissa */
 	if (millis() - oldMushroomUpdateTime > 16) {
 		draw();	// Piirrä kartta ja pelaaja
 
@@ -40,14 +40,6 @@ void mushroomGame::run() {
 		oldUpdateTime = millis();
 	}
 	
-}
-
-bool mushroomGame::checkCollisionBelow() {
-	if (localEngine->checkTile(player.x, player.y+player.height+1) && localEngine->checkTile(player.x + player.width, player.y+player.height+1)) {
-		return true;
-	}
-
-	return false;
 }
 
 /*--  --*/
