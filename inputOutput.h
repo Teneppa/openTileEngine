@@ -22,8 +22,10 @@ struct inputOutput {
 		KEY_JUMP
 	};
 
+	void begin();
+
 	/* Tallenna digitaaliset pinnit napeille */
-	const dataType keyList[keyAmount] = {2, 3, 4};
+	const dataType keyList[keyAmount] = {3, 4, A2};
 
 	bool returnKey(dataType nKey);
 };

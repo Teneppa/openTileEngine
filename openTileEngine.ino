@@ -67,7 +67,6 @@ void loop() {
 	oled.clearDisplay();	// Tyhjennä puskuri
 
 	mGame.run();			// Piirrä peliä
-	//delay(100);
 
 	oled.display();			// Siirrä puskuri näytölle
 }
