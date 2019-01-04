@@ -22,6 +22,9 @@
     <Filter Include="Resource Files\Games">
       <UniqueIdentifier>{7e6c22eb-4b71-464d-9ed9-c93ff9ef7e5b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Hardware">
+      <UniqueIdentifier>{83e31692-5e1b-4f9e-ba47-a980228ca657}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="openTileEngine.ino" />
@@ -60,25 +63,31 @@
     <ClInclude Include="physics.h">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
+    <ClInclude Include="inputOutput.h">
+      <Filter>Header Files\Hardware</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="gameObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sprite.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tilengine.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="gameEvent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="mushroomGame.cpp">
       <Filter>Resource Files\Games</Filter>
     </ClCompile>
+    <ClCompile Include="gameEvent.cpp">
+      <Filter>Header Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="gameObject.cpp">
+      <Filter>Header Files\Engine</Filter>
+    </ClCompile>
     <ClCompile Include="physics.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="inputOutput.cpp">
+      <Filter>Header Files\Hardware</Filter>
+    </ClCompile>
+    <ClCompile Include="tilengine.cpp">
+      <Filter>Header Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="sprite.cpp">
+      <Filter>Header Files\Engine</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

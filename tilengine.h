@@ -10,10 +10,11 @@
 #endif
 
 #include "variableType.h"
+#include "gameObject.h"
 
 struct tilengine {
 	tilengine(dataType getEngineWidth, dataType getEngineHeight, dataType getTileWidth, dataType getTileHeight);
-	~tilengine();	// Poista karttapuskuri kun t‰t‰ ei en‰‰ tarvita
+	~tilengine();	// Poista karttapuskuri kun sit‰ ei en‰‰ tarvita
 
 	mapDataType * mapBuffer;       // Puskuri kartalle
 
@@ -22,20 +23,24 @@ struct tilengine {
 
 	void(*pointToTileDrawingFunction)(dataType, dataType);	// Hae osoitin piirtofunktioon
 
-	inline bool checkTile(dataType getX, dataType getY);
+	bool checkTile(dataType getX, dataType getY);
+	void checkCollision(gameObject * obj);
+	void checkCollision(gameObject * obj, dataType xOffset, dataType yOffset);
 
 	void drawMap();
 
+	/* Ruutujen koko, m‰‰r‰ ja varaama muisti */
 	dataType width;
 	dataType height;
 	dataType tileWidth;
 	dataType tileheight;
 	dataType tilecount;
-
-	private:
-		dataType mapWidth;
-		dataType mapHeight;
-		dataType mapVariableSize;
+	
+	/* Erilaiset tˆrm‰ykset */
+	bool COLLISION_BELOW = false;
+	bool COLLISION_ABOVE = false;
+	bool COLLISION_LEFT = false;
+	bool COLLISION_RIGHT = false;
 };
 
 #endif

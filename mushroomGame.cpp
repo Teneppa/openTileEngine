@@ -13,7 +13,7 @@ mushroomGame::mushroomGame(tilengine * engine) {
 	localEngine = engine;
 }
 
-/*--  --*/
+/*-- Kun peli käynnistetään muista määrittää pelaajan koko --*/
 void mushroomGame::initialize(dataType width, dataType height) {
 	player.width = width;
 	player.height = height;
@@ -22,6 +22,32 @@ void mushroomGame::initialize(dataType width, dataType height) {
 /*--  --*/
 void mushroomGame::assignDrawingFunction(void(*getFunctionPointer)(dataType x, dataType y)) {
 	pointToPlayerDrawingFunction = getFunctionPointer;
+}
+
+/*-- Pelin pääfunktio --*/
+void mushroomGame::run() {
+	/* Päivitä pelifunktiota n. 62,5 kertaa sekunnissa */
+
+	if (millis() - oldMushroomUpdateTime > 16) {
+		draw();	// Piirrä kartta ja pelaaja
+
+		localEngine->checkCollision(&player);	// Laske törmäykset pelaajalle
+
+		if (!localEngine->COLLISION_BELOW) {
+			playerPhysics.calculateGravity(&player, 0.2, millis() - oldUpdateTime);		// Laske painovoima pelaajalle
+		}
+
+		oldUpdateTime = millis();
+	}
+	
+}
+
+bool mushroomGame::checkCollisionBelow() {
+	if (localEngine->checkTile(player.x, player.y+player.height+1) && localEngine->checkTile(player.x + player.width, player.y+player.height+1)) {
+		return true;
+	}
+
+	return false;
 }
 
 /*--  --*/

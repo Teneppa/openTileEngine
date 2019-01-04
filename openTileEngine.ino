@@ -6,6 +6,7 @@
 
 /*--  --*/
 
+#include "inputOutput.h"
 #include "physics.h"
 #include "mushroomGame.h"
 #include "gameEvent.h"
@@ -51,6 +52,8 @@ void drawPlayer(dataType x, dataType y) {
 
 void setup() {
 
+	Serial.begin(115200);
+
 	beginDisplay();			// Määritä OLED -juttuja
 
 	engine.assignDrawingFunction(drawTile);		// Määritä piirtofunktio palikoille
@@ -63,7 +66,7 @@ void setup() {
 void loop() {
 	oled.clearDisplay();	// Tyhjennä puskuri
 
-	mGame.draw();			// Piirrä peliä
+	mGame.run();			// Piirrä peliä
 
 	oled.display();			// Siirrä puskuri näytölle
 }

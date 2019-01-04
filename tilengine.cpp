@@ -29,13 +29,58 @@ void tilengine::assignDrawingFunction(void(*getFunctionPointer)(dataType x, data
 }
 
 /*-- Tällä funktiolla voi tarkistaa onko kyseisessä koordinaatissa palikkaa --*/
-inline bool tilengine::checkTile(dataType getX, dataType getY) {
+bool tilengine::checkTile(dataType getX, dataType getY) {
 
+	uint8_t x = width - 1 - ((getX - getX % 8) / 8);	// Laske ruudun sijainti puskurissa
+	uint8_t y = (getY - getY % 8) / 8;
+
+	return ((mapBuffer[y] & (1 << x)) >> x);  // Tarkista onko ruudussa mitään
 }
 
 /*-- Tällä funktiolla ladataan kartta mapBufferiin --*/
 void tilengine::loadMap(mapDataType *getMap) {
-	memcpy(mapBuffer, getMap, sizeof(uint16_t)*width * height / 16);	// Siirrä kartta karttapuskuriin
+	memcpy(mapBuffer, getMap, sizeof(uint16_t)* width * height / 16);	// Siirrä kartta karttapuskuriin
+}
+
+/*-- Tällä funktiolla tarkistetaan törmäykset objektin ja kartan välillä --*/
+void tilengine::checkCollision(gameObject * obj) {
+
+	/* Tyhjennä kaikki törmäysmuuttujat */
+	COLLISION_BELOW =	false;
+	COLLISION_ABOVE =	false;
+	COLLISION_LEFT  =	false;
+	COLLISION_RIGHT =	false;
+
+	dataType xpos = obj->x;		// Objektin koordinaatit
+	dataType ypos = obj->y;
+
+	dataType sprWidth = obj->width;		// Objektin koko
+	dataType sprHeight = obj->height;
+
+	/* Tarkista vasen ylä- ja alakulma */
+	if (checkTile(xpos, ypos) || checkTile(xpos, ypos + sprHeight)) {
+		COLLISION_LEFT = true;
+	}
+
+	/* Tarkista oikea ylä- ja alakulma */
+	if (checkTile(xpos + sprWidth, ypos) || checkTile(xpos + sprWidth, ypos + sprHeight)) {
+		COLLISION_RIGHT = true;
+	}
+
+	/* Tarkista onko objekti maassa */
+	if (checkTile(xpos, ypos + sprHeight + 1) || checkTile(xpos + sprWidth, ypos + sprHeight + 1)) {
+		COLLISION_BELOW = true;
+	}
+
+	/* Tarkista onko objektin yläpuolella mitään */
+	if (checkTile(xpos, ypos - 1) || checkTile(xpos + sprWidth, ypos - 1)) {
+		COLLISION_ABOVE = true;
+	}
+}
+
+/*-- Tällä funktiolla tarkistetaan törmäykset mahdollisesta uudesta sijainnista --*/
+void tilengine::checkCollision(gameObject * obj, dataType xOffset, dataType yOffset) {
+
 }
 
 /*-- Tämä funktio piirtää kartan --*/
