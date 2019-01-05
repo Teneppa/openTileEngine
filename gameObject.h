@@ -20,6 +20,8 @@ struct gameObject : sprite {
 	gameObject(dataType width, dataType height, bitmapDataType * bitmap); // Kun olio luodaan
 	~gameObject();  // Kun olio tuhotaan
 
+	bool collidesWithGameobject(gameObject * obj);
+
 	dataType getWidth();  // N‰ill‰ voi pyyt‰‰ olion koon
 	dataType getHeight();
 

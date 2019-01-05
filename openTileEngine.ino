@@ -6,6 +6,8 @@
 
 /*--  --*/
 
+#include "mushroomLevels.h"
+#include "levels.h"
 #include "inputOutput.h"
 #include "physics.h"
 #include "mushroomGame.h"
@@ -31,23 +33,28 @@ void beginDisplay() {
 	oled.setRotation(2);				// Pyˆr‰yt‰ kuvaa 180 astetta
 }
 
-tilengine engine(16, 8, 8, 8);	// tilengine(kartan leveys, kartan korkeus,
-								//			 laata leveys, laatan korkeus);
+tilengine engine(bitmap_block, 16, 8, 8, 8);	// tilengine(kartan leveys, kartan korkeus,
+								                //           laatan leveys, laatan korkeus);
 
 #include "mushroomGame.h"
 #include "bitmaps.h"
-#include "levels.h"
+#include "mushroomLevels.h"
 
 mushroomGame mGame(&engine);	// Anna pelille tile-enginen muistiosoite, jotta se voi k‰ytt‰‰ sit‰
-
-/* Piirtofunktio palikalle */
-void drawTile(dataType x, dataType y) {
-	oled.drawBitmap(x, y, bitmap_block, 8, 8, 1);
-}
 
 /* Piirtofunktio pelaajalle */
 void drawPlayer(dataType x, dataType y) {
 	oled.drawBitmap(x, y, bitmap_mushroom, 8, 8, 1);
+}
+
+/* Piirtofunktio avaimelle */
+void drawKey(dataType x, dataType y) {
+	oled.drawBitmap(x, y, coin1, 8, 8, 1);
+}
+
+/* Piirtofunktio bittikartoille */
+void bitmapDrawingFunction(dataType x, dataType y, bitmapDataType * bmp, dataType width, dataType height) {
+	oled.drawBitmap(x, y, bmp, 8, 8, 1);
 }
 
 void setup() {
@@ -56,11 +63,11 @@ void setup() {
 
 	beginDisplay();			// M‰‰rit‰ OLED -juttuja
 
-	engine.assignDrawingFunction(drawTile);		// M‰‰rit‰ piirtofunktio palikoille
+	engine.assignBitmapDrawingFunction(bitmapDrawingFunction);		// M‰‰rit‰ piirtofunktio palikoille
 	mGame.assignDrawingFunction(drawPlayer);	// M‰‰rit‰ piirtofunktio pelaajalle
+	mGame.assignKeyDrawingFunction(drawKey);
 
 	mGame.initialize(8, 8);	// Player width and height
-	mGame.loadMap(mushMap);	// Lataa kartta muistiin
 }
 
 void loop() {

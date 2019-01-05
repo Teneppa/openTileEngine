@@ -1,7 +1,7 @@
-// levels.h
+// mushroomLevels.h
 
-#ifndef _LEVELS_h
-#define _LEVELS_h
+#ifndef _MUSHROOMLEVELS_h
+#define _MUSHROOMLEVELS_h
 
 #if defined(ARDUINO) && ARDUINO >= 100
 	#include "arduino.h"
@@ -9,11 +9,11 @@
 	#include "WProgram.h"
 #endif
 
-#include "gameObject.h"
+#include "variableType.h"
 
-const dataType numberOfLevels = 2;
+const dataType numberOfMushroomLevels = 2;
 
-uint16_t mushMap[8 * numberOfLevels] = {
+const uint16_t mushroomMap[8 * numberOfMushroomLevels] = {
 	/* Level 1 */
 	0b1111111111111111,
 	0b1000000000000001,
@@ -26,8 +26,8 @@ uint16_t mushMap[8 * numberOfLevels] = {
 
 	/* Level 2 */
 	0b1111111111111111,
-	0b0000000000000001,
-	0b0000000000000001,
+	0b1000000000000001,
+	0b1000000000000001,
 	0b1101000000000001,
 	0b1000001000000011,
 	0b1000000000000001,
@@ -36,3 +36,4 @@ uint16_t mushMap[8 * numberOfLevels] = {
 };
 
 #endif
+

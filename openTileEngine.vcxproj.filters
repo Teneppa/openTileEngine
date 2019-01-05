@@ -33,9 +33,6 @@
     <ClInclude Include="__vm\.openTileEngine.vsarduino.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="levels.h">
-      <Filter>Header Files\Data</Filter>
-    </ClInclude>
     <ClInclude Include="gameObject.h">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
@@ -66,6 +63,9 @@
     <ClInclude Include="inputOutput.h">
       <Filter>Header Files\Hardware</Filter>
     </ClInclude>
+    <ClInclude Include="mushroomLevels.h">
+      <Filter>Header Files\Data</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="mushroomGame.cpp">
@@ -88,6 +88,9 @@
     </ClCompile>
     <ClCompile Include="sprite.cpp">
       <Filter>Header Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="mushroomLevels.cpp">
+      <Filter>Header Files\Data</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

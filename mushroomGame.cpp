@@ -8,7 +8,7 @@
 /*-- Kun pelistä luodaan olio --*/
 mushroomGame::mushroomGame(tilengine * engine) {
 	player.x = 9;	// Aseta pelaajan koordinaateiksi (8,8)
-	player.y = 9;
+	player.y = 46;
 
 	localEngine = engine;
 }
@@ -18,11 +18,32 @@ void mushroomGame::initialize(dataType width, dataType height) {
 	player.width = width;		// Määritä pelaajan leveys ja korkeus
 	player.height = height;
 	io.begin();					// Aseta pinnien tilat
+
+	key.x = 8;
+	key.y = 8;
+	key.width = 8;
+	key.height = 8;
+
+	currentLevel = 0;
+
+	loadLevel(currentLevel);
 }
 
 /*--  --*/
 void mushroomGame::assignDrawingFunction(void(*getFunctionPointer)(dataType x, dataType y)) {
 	pointToPlayerDrawingFunction = getFunctionPointer;
+}
+
+void mushroomGame::loadLevel(dataType levelToLoad) {
+	if (levelToLoad >= 0 && levelToLoad < numberOfMushroomLevels) {
+
+		player.x = 9;
+		player.y = 46;
+		
+		const mapDataType * pointerToStartOfTheMap = &mushroomMap[levelToLoad*8];
+		loadMap(pointerToStartOfTheMap);
+		
+	}
 }
 
 /*-- Pelin pääfunktio --*/
@@ -31,6 +52,13 @@ void mushroomGame::run() {
 	/* Päivitä pelifunktiota n. 62,5 kertaa sekunnissa */
 	if (millis() - oldMushroomUpdateTime > 16) {
 		draw();	// Piirrä kartta ja pelaaja
+
+		/* Jos pelaaja osuu avaimeen */
+		if (key.collidesWithGameobject(&player)) {
+			Serial.println(F("Player got the key!"));
+			currentLevel += 1;
+			loadLevel(currentLevel);
+		}
 
 		/* Tarkista onko pelaaja ilmassa vai maassa */
 		if (!localEngine->COLLISION_BELOW(&player)) {
@@ -87,13 +115,23 @@ void mushroomGame::run() {
 	
 }
 
+void mushroomGame::assignKeyDrawingFunction(void(*getFunctionPointer)(dataType x, dataType y)) {
+	pointToKeyDrawingFunction = getFunctionPointer;
+}
+
 /*--  --*/
 void mushroomGame::draw() {
 	localEngine->drawMap();	// Piirrä kartta
 	pointToPlayerDrawingFunction(player.x, player.y);	// Piirrä pelaaja
+	pointToKeyDrawingFunction(key.x, key.y);
 }
 
 /*--  --*/
 void mushroomGame::loadMap(mapDataType * m) {
+	localEngine->loadMap(m);
+}
+
+/*--  --*/
+void mushroomGame::loadMap(const mapDataType * m) {
 	localEngine->loadMap(m);
 }

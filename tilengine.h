@@ -13,17 +13,18 @@
 #include "gameObject.h"
 
 struct tilengine {
-	tilengine(dataType getEngineWidth, dataType getEngineHeight, dataType getTileWidth, dataType getTileHeight);
+	tilengine(bitmapDataType * getTileBitmap, dataType getEngineWidth, dataType getEngineHeight, dataType getTileWidth, dataType getTileHeight);
 	~tilengine();	// Poista karttapuskuri kun sit‰ ei en‰‰ tarvita
 
 	mapDataType * mapBuffer;       // Puskuri kartalle
 
-	void assignDrawingFunction(void(*getFunctionPointer)(dataType x, dataType y));
-	void loadMap(mapDataType * getMap);	// M‰‰rittele kartan koko ja tallennusmuoto
+	void assignBitmapDrawingFunction(void(*getFunctionPointer)(dataType x, dataType y, bitmapDataType * bitmap, dataType width, dataType height));
+	void loadMap(const mapDataType *getMap);	// M‰‰rittele kartan koko ja tallennusmuoto
 
-	void(*pointToTileDrawingFunction)(dataType, dataType);	// Hae osoitin piirtofunktioon
-
+	void(*pointToBitmapDrawingFunction)(dataType, dataType, bitmapDataType *, dataType, dataType);	// Hae osoitin piirtofunktioon
 	bool checkTile(dataType getX, dataType getY);
+
+	bitmapDataType * tileBitmap;
 
 	void drawMap();
 
@@ -31,7 +32,7 @@ struct tilengine {
 	dataType width;
 	dataType height;
 	dataType tileWidth;
-	dataType tileheight;
+	dataType tileHeight;
 	dataType tilecount;
 	
 	/* Erilaiset tˆrm‰ykset */

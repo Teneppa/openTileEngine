@@ -1,5 +1,7 @@
 // mushroomGame.h
 
+#pragma once
+
 #ifndef _MUSHROOMGAME_h
 #define _MUSHROOMGAME_h
 
@@ -15,6 +17,7 @@
 #include "bitmaps.h"
 #include "physics.h"
 #include "inputOutput.h"
+#include "mushroomLevels.h"
 
 struct mushroomGame {
 	gameObject	player;				// Luo olio pelaajalle
@@ -22,9 +25,18 @@ struct mushroomGame {
 	tilengine * localEngine;		// Luo osoitin tile-enginelle
 	inputOutput io;					// Luo olio näppäimiä hallitsevalle kirjastolle
 
+	gameObject key;
+
+	dataType currentLevel = 0;
+
+	void loadLevel(dataType levelToLoad);
+
 	void initialize(dataType width, dataType height);
 	void assignDrawingFunction(void(*getFunctionPointer)(dataType x, dataType y));	// Hae osoitin piirtofunktioon
 	void(*pointToPlayerDrawingFunction)(dataType, dataType);	// Osoitin piirtofunktioon
+
+	void assignKeyDrawingFunction(void(*getFunctionPointer)(dataType x, dataType y));	// Hae osoitin piirtofunktioon
+	void(*pointToKeyDrawingFunction)(dataType, dataType);	// Osoitin piirtofunktioon
 
 	longDataType oldUpdateTime = 0;		// Milloin peli on viimeksi päivitetty
 	longDataType oldMushroomUpdateTime = 0;
@@ -33,6 +45,7 @@ struct mushroomGame {
 	void run();		// Hoida piirtäminen, fysiikat ja muut tässä funktiossa
 	void draw();
 	void loadMap(mapDataType * m);
+	void loadMap(const mapDataType * m);
 };
 
 #endif

@@ -111,8 +111,8 @@
     <ClInclude Include="gameEvent.h" />
     <ClInclude Include="gameObject.h" />
     <ClInclude Include="inputOutput.h" />
-    <ClInclude Include="levels.h" />
     <ClInclude Include="mushroomGame.h" />
+    <ClInclude Include="mushroomLevels.h" />
     <ClInclude Include="mushroomMaps.h" />
     <ClInclude Include="physics.h" />
     <ClInclude Include="sprite.h" />
@@ -125,6 +125,7 @@
     <ClCompile Include="gameObject.cpp" />
     <ClCompile Include="inputOutput.cpp" />
     <ClCompile Include="mushroomGame.cpp" />
+    <ClCompile Include="mushroomLevels.cpp" />
     <ClCompile Include="physics.cpp" />
     <ClCompile Include="sprite.cpp" />
     <ClCompile Include="tilengine.cpp" />
@@ -137,7 +138,7 @@
   </ImportGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties arduino.upload.port="COM23" />
+      <UserProperties arduino.upload.port="COM40" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

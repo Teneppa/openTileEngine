@@ -8,8 +8,13 @@
 #include "tilengine.h"
 
 /*-- Kun luot olion, tallenna leveys ja korkeus sek‰ varaa muistia kartalle --*/
-tilengine::tilengine(dataType getEngineWidth, dataType getEngineHeight, dataType getTileWidth, dataType getTileHeight) {
+tilengine::tilengine(bitmapDataType * getTileBitmap, dataType getEngineWidth, dataType getEngineHeight, dataType getTileWidth, dataType getTileHeight) {
 	
+	tileBitmap = getTileBitmap;
+
+	tileWidth = getTileWidth;
+	tileHeight = getTileHeight;
+
 	tilecount = getEngineWidth * getEngineHeight / 16;	// Laske tarvittavan tilan m‰‰r‰
 	width = getEngineWidth;						// Tallenna kartan leveys ja korkeus
 	height = getEngineHeight;
@@ -24,8 +29,8 @@ tilengine::~tilengine() {
 }
 
 /*-- T‰ll‰ funktiolla voi m‰‰ritt‰‰ tilenginen k‰ytt‰m‰n piirtofunktion palikoille --*/
-void tilengine::assignDrawingFunction(void(*getFunctionPointer)(dataType x, dataType y)) {
-	pointToTileDrawingFunction = getFunctionPointer;
+void tilengine::assignBitmapDrawingFunction(void(*getBitmapFunctionPointer)(dataType x, dataType y, bitmapDataType * bitmap, dataType width, dataType height)) {
+	pointToBitmapDrawingFunction = getBitmapFunctionPointer;
 }
 
 /*-- T‰ll‰ funktiolla voi tarkistaa onko kyseisess‰ koordinaatissa palikkaa --*/
@@ -38,7 +43,7 @@ bool tilengine::checkTile(dataType getX, dataType getY) {
 }
 
 /*-- T‰ll‰ funktiolla ladataan kartta mapBufferiin --*/
-void tilengine::loadMap(mapDataType *getMap) {
+void tilengine::loadMap(const mapDataType *getMap) {
 	memcpy(mapBuffer, getMap, sizeof(uint16_t)* width * height / 16);	// Siirr‰ kartta karttapuskuriin
 }
 
@@ -80,9 +85,9 @@ void tilengine::drawMap() {
 		for (dataType x = 0; x < width; x++) {
 
 			if (((mapBuffer[y] & (1 << x)) >> x)) { // Check if there is a bitmap to draw on this tile
-				dataType xpos = dataType((width - 1) * 8 - x * 8); // Get the coordinates for the bitmap
-				dataType ypos = dataType(y * 8);
-				pointToTileDrawingFunction(xpos, ypos);            // K‰yt‰ funktio-osoitinta piirt‰miseen
+				dataType xpos = dataType((width - 1) * tileWidth - x * tileWidth); // Get the coordinates for the bitmap
+				dataType ypos = dataType(y * tileHeight);
+				pointToBitmapDrawingFunction(xpos, ypos, tileBitmap, tileWidth, tileHeight);	// K‰yt‰ funktio-osoitinta piirt‰miseen
 			}
 
 		}
