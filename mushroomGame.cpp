@@ -7,8 +7,8 @@
 
 /*-- Kun pelistä luodaan olio --*/
 mushroomGame::mushroomGame(tilengine * engine) {
-	player.x = 8;	// Aseta pelaajan koordinaateiksi (8,8)
-	player.y = 8;
+	player.x = 9;	// Aseta pelaajan koordinaateiksi (8,8)
+	player.y = 9;
 
 	localEngine = engine;
 }
@@ -32,31 +32,55 @@ void mushroomGame::run() {
 	if (millis() - oldMushroomUpdateTime > 16) {
 		draw();	// Piirrä kartta ja pelaaja
 
-		localEngine->checkCollision(&player);	// Laske törmäykset pelaajalle
-
 		/* Tarkista onko pelaaja ilmassa vai maassa */
-		if (!localEngine->COLLISION_BELOW) {
+		if (!localEngine->COLLISION_BELOW(&player)) {
 			playerPhysics.calculateGravity(&player, millis() - oldUpdateTime);		// Laske painovoima pelaajalle
 		} else {
 			if (io.returnKey(io.KEY_JUMP)) {	// Jos hyppynappia painetaan
-				player.vSpeed = -40.0f;
+				player.vSpeed = -80.0f;
 				player.y -= 1;	// Nosta pelaajaa yhdellä pikselillä jotta tilengine ei luule että pelaaja olisi jo maassa
 			}
 		}
 
 		/* Jos pelaaja liikkuu vasemmalle */
-		if (!localEngine->COLLISION_LEFT) {
+		if (!localEngine->COLLISION_LEFT(&player)) {
 			if (io.returnKey(io.KEY_LEFT)) {
 				player.x -= 1;
+
+				/* Jos pelaaja meni seinän sisään, siirrä pelaaja pois sieltä */
+				if (localEngine->COLLISION_LEFT(&player)) {
+					player.x += 1;
+				}
 			}
 		}
 
 		/* Jos pelaaja liikkuu oikealle */
-		if (!localEngine->COLLISION_RIGHT) {
+		if (!localEngine->COLLISION_RIGHT(&player)) {
 			if (io.returnKey(io.KEY_RIGHT)) {
 				player.x += 1;
+
+				/* Jos pelaaja meni seinän sisään, siirrä pelaaja pois sieltä */
+				if (localEngine->COLLISION_RIGHT(&player)) {
+					player.x -= 1;
+				}
+
 			}
 		}
+
+		/* Jos pelaaja törmää yllä olevaan palikkaan */
+		if (localEngine->COLLISION_ABOVE(&player)) {
+			player.vSpeed = abs(player.vSpeed)/2;
+		}
+
+		/* DEBUG */
+
+		/*
+		Serial.println("Törmäys vasemmalle: " + String(localEngine->COLLISION_LEFT));
+		Serial.println("Törmäys oikealle: " + String(localEngine->COLLISION_RIGHT));
+		Serial.println("Törmäys alla: " + String(localEngine->COLLISION_BELOW));
+
+		Serial.println();
+		*/
 
 		oldUpdateTime = millis();
 	}

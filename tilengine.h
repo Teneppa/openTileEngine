@@ -24,8 +24,6 @@ struct tilengine {
 	void(*pointToTileDrawingFunction)(dataType, dataType);	// Hae osoitin piirtofunktioon
 
 	bool checkTile(dataType getX, dataType getY);
-	void checkCollision(gameObject * obj);
-	void checkCollision(gameObject * obj, dataType xOffset, dataType yOffset);
 
 	void drawMap();
 
@@ -37,10 +35,10 @@ struct tilengine {
 	dataType tilecount;
 	
 	/* Erilaiset törmäykset */
-	bool COLLISION_BELOW = false;
-	bool COLLISION_ABOVE = false;
-	bool COLLISION_LEFT = false;
-	bool COLLISION_RIGHT = false;
+	bool COLLISION_BELOW(gameObject * obj);
+	bool COLLISION_ABOVE(gameObject * obj);
+	bool COLLISION_LEFT(gameObject * obj);
+	bool COLLISION_RIGHT(gameObject * obj);
 };
 
 #endif

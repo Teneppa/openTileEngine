@@ -18,7 +18,7 @@ void physics::calculateGravity(gameObject * object, longDataType time) {
 	Serial.println("vSpeed = " + String(object->vSpeed));
 	Serial.println("Gravity = " + String(gravity));
 	Serial.println("Time = " + String(timeInSeconds));
-	*/
 
 	Serial.println();
+	*/
 }

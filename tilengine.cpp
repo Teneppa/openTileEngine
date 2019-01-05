@@ -42,46 +42,37 @@ void tilengine::loadMap(mapDataType *getMap) {
 	memcpy(mapBuffer, getMap, sizeof(uint16_t)* width * height / 16);	// Siirrä kartta karttapuskuriin
 }
 
-/*-- Tällä funktiolla tarkistetaan törmäykset objektin ja kartan välillä --*/
-void tilengine::checkCollision(gameObject * obj) {
+/*<<//>><<\\>><<//>>\\>><<//>><<//>> Näillä funktiolla tarkistetaan törmäykset objektin ja kartan välillä <<//>><<\\>><<//>>\\>><<//>><<//>>*/
 
-	/* Tyhjennä kaikki törmäysmuuttujat */
-	COLLISION_BELOW =	false;
-	COLLISION_ABOVE =	false;
-	COLLISION_LEFT  =	false;
-	COLLISION_RIGHT =	false;
+/*= Tarkista oikea ylä- ja alakulma =*/
+bool tilengine::COLLISION_RIGHT(gameObject * obj) {
+	if (checkTile(obj->x + obj->height - 1, obj->y) || checkTile(obj->x + obj->width - 1, obj->y + obj->height - 1)) {return true;}
 
-	dataType xpos = obj->x;		// Objektin koordinaatit
-	dataType ypos = obj->y;
-
-	dataType sprWidth = obj->width;		// Objektin koko
-	dataType sprHeight = obj->height;
-
-	/* Tarkista vasen ylä- ja alakulma */
-	if (checkTile(xpos, ypos) || checkTile(xpos, ypos + sprHeight)) {
-		COLLISION_LEFT = true;
-	}
-
-	/* Tarkista oikea ylä- ja alakulma */
-	if (checkTile(xpos + sprWidth, ypos) || checkTile(xpos + sprWidth, ypos + sprHeight)) {
-		COLLISION_RIGHT = true;
-	}
-
-	/* Tarkista onko objekti maassa */
-	if (checkTile(xpos, ypos + sprHeight + 1) || checkTile(xpos + sprWidth, ypos + sprHeight + 1)) {
-		COLLISION_BELOW = true;
-	}
-
-	/* Tarkista onko objektin yläpuolella mitään */
-	if (checkTile(xpos, ypos - 1) || checkTile(xpos + sprWidth, ypos - 1)) {
-		COLLISION_ABOVE = true;
-	}
+	return false;
 }
 
-/*-- Tällä funktiolla tarkistetaan törmäykset mahdollisesta uudesta sijainnista --*/
-void tilengine::checkCollision(gameObject * obj, dataType xOffset, dataType yOffset) {
+/*-- Tarkista vasen ylä- ja alakulma --*/
+bool tilengine::COLLISION_LEFT(gameObject * obj) {
+	if (checkTile(obj->x, obj->y) || checkTile(obj->x, obj->y + obj->height-1)) { return true; }
 
+	return false;
 }
+
+/*-- Tarkista onko objekti maassa --*/
+bool tilengine::COLLISION_BELOW(gameObject * obj) {
+	if (checkTile(obj->x, obj->y + obj->height) || checkTile(obj->x + obj->width-1, obj->y + obj->height)) { return true; }
+
+	return false;
+}
+
+/*-- Tarkista onko objektin yläpuolella mitään --*/
+bool tilengine::COLLISION_ABOVE(gameObject * obj) {
+	if (checkTile(obj->x, obj->y - 1) || checkTile(obj->x + obj->width - 1, obj->y - 1)) { return true; }
+
+	return false;
+}
+
+/*<<//>><<\\>><<//>>\\>><<//>><<//>><<\\>><<//>>\\>><<//>><<//>><<\\>><<//>>\\>><<//>><<//>><<\\>><<//>>\\>><<//>><<//>><<\\>><<//>>\\>><<//>>*/
 
 /*-- Tämä funktio piirtää kartan --*/
 void tilengine::drawMap() {

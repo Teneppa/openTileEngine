@@ -17,7 +17,7 @@ struct physics {
 	void calculateGravity(gameObject * object, longDataType time);	// Objekti jolle fysiikat lasketaan, kiihtyvyys
 																							// ja kulunut aika edellisestä päivityksestä
 
-	floatDataType gravity = 80.0f;
+	floatDataType gravity = 200.0f;
 };
 
 #endif
