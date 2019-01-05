@@ -13,27 +13,28 @@ mushroomGame::mushroomGame(tilengine * engine) {
 	localEngine = engine;
 }
 
-/*-- Kun peli käynnistetään muista määrittää pelaajan koko --*/
+/*-- Kun peli käynnistetään --*/
 void mushroomGame::initialize(dataType width, dataType height) {
 	player.width = width;		// Määritä pelaajan leveys ja korkeus
 	player.height = height;
 	io.begin();					// Aseta pinnien tilat
 
-	key.x = 8;
+	key.x = 8;		// Määritä 'avaimen' koordinaati ja koko
 	key.y = 8;
 	key.width = 8;
 	key.height = 8;
 
-	currentLevel = 0;
+	currentLevel = 0;	// Nollaa tämänhetkinen taso
 
-	loadLevel(currentLevel);
+	loadLevel(currentLevel);	// Lataa tämänhetkinen taso
 }
 
 /*--  --*/
-void mushroomGame::assignDrawingFunction(void(*getFunctionPointer)(dataType x, dataType y)) {
-	pointToPlayerDrawingFunction = getFunctionPointer;
+void mushroomGame::assignBitmapDrawingFunction(void(*getFunctionPointer)(dataType x, dataType y, bitmapDataType * bitmap, dataType width, dataType height)) {
+	pointToBitmapDrawingFunction = getFunctionPointer;
 }
 
+/*-- Lataa haluttu taso --*/
 void mushroomGame::loadLevel(dataType levelToLoad) {
 	if (levelToLoad >= 0 && levelToLoad < numberOfMushroomLevels) {
 
@@ -115,15 +116,11 @@ void mushroomGame::run() {
 	
 }
 
-void mushroomGame::assignKeyDrawingFunction(void(*getFunctionPointer)(dataType x, dataType y)) {
-	pointToKeyDrawingFunction = getFunctionPointer;
-}
-
 /*--  --*/
 void mushroomGame::draw() {
 	localEngine->drawMap();	// Piirrä kartta
-	pointToPlayerDrawingFunction(player.x, player.y);	// Piirrä pelaaja
-	pointToKeyDrawingFunction(key.x, key.y);
+	pointToBitmapDrawingFunction(player.x, player.y, bitmap_mushroom, player.width, player.height);	// Piirrä pelaaja
+	pointToBitmapDrawingFunction(key.x, key.y, coin1, key.width, key.height);
 }
 
 /*--  --*/

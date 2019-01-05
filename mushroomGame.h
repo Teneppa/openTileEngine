@@ -32,11 +32,8 @@ struct mushroomGame {
 	void loadLevel(dataType levelToLoad);
 
 	void initialize(dataType width, dataType height);
-	void assignDrawingFunction(void(*getFunctionPointer)(dataType x, dataType y));	// Hae osoitin piirtofunktioon
-	void(*pointToPlayerDrawingFunction)(dataType, dataType);	// Osoitin piirtofunktioon
-
-	void assignKeyDrawingFunction(void(*getFunctionPointer)(dataType x, dataType y));	// Hae osoitin piirtofunktioon
-	void(*pointToKeyDrawingFunction)(dataType, dataType);	// Osoitin piirtofunktioon
+	void assignBitmapDrawingFunction(void(*getFunctionPointer)(dataType x, dataType y, bitmapDataType * bitmap, dataType width, dataType height));	// Hae osoitin piirtofunktioon
+	void(*pointToBitmapDrawingFunction)(dataType, dataType, bitmapDataType *, dataType, dataType);	// Osoitin piirtofunktioon
 
 	longDataType oldUpdateTime = 0;		// Milloin peli on viimeksi päivitetty
 	longDataType oldMushroomUpdateTime = 0;

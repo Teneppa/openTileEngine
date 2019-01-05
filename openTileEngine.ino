@@ -63,9 +63,8 @@ void setup() {
 
 	beginDisplay();			// M‰‰rit‰ OLED -juttuja
 
-	engine.assignBitmapDrawingFunction(bitmapDrawingFunction);		// M‰‰rit‰ piirtofunktio palikoille
-	mGame.assignDrawingFunction(drawPlayer);	// M‰‰rit‰ piirtofunktio pelaajalle
-	mGame.assignKeyDrawingFunction(drawKey);
+	engine.assignBitmapDrawingFunction(bitmapDrawingFunction);	// M‰‰rit‰ piirtofunktio palikoille
+	mGame.assignBitmapDrawingFunction(bitmapDrawingFunction);	// M‰‰rit‰ piirtofunktio pelaajalle
 
 	mGame.initialize(8, 8);	// Player width and height
 }
