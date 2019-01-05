@@ -42,16 +42,6 @@ tilengine engine(bitmap_block, 16, 8, 8, 8);	// tilengine(kartan leveys, kartan 
 
 mushroomGame mGame(&engine);	// Anna pelille tile-enginen muistiosoite, jotta se voi k‰ytt‰‰ sit‰
 
-/* Piirtofunktio pelaajalle */
-void drawPlayer(dataType x, dataType y) {
-	oled.drawBitmap(x, y, bitmap_mushroom, 8, 8, 1);
-}
-
-/* Piirtofunktio avaimelle */
-void drawKey(dataType x, dataType y) {
-	oled.drawBitmap(x, y, coin1, 8, 8, 1);
-}
-
 /* Piirtofunktio bittikartoille */
 void bitmapDrawingFunction(dataType x, dataType y, bitmapDataType * bmp, dataType width, dataType height) {
 	oled.drawBitmap(x, y, bmp, 8, 8, 1);
