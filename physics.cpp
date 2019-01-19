@@ -10,6 +10,7 @@ void physics::calculateGravity(gameObject * object, longDataType time) {
 	floatDataType timeInSeconds = time / 1000.0f;
 
 	object->y += object->vSpeed * timeInSeconds;		// Muuta objektin sijaintia
+
 	object->vSpeed += gravity * timeInSeconds;	// Lis‰‰ kiihtyvyys y-akselin suuntaiseen nopeuteen
 
 	/* DEBUG */

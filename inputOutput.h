@@ -25,7 +25,8 @@ struct inputOutput {
 	void begin();
 
 	/* Tallenna digitaaliset pinnit napeille */
-	const dataType keyList[keyAmount] = {3, 4, A2};
+	//const dataType keyList[keyAmount] = {3, 4, A2};	// Prototyyppi
+	const dataType keyList[keyAmount] = { A7, A1, PD2 };	// PCB versio
 
 	bool returnKey(dataType nKey);
 };
