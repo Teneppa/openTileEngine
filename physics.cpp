@@ -32,8 +32,10 @@ void physics::calculateGravity(tilengine * enginePointer, gameObject * object, l
 
 	if (enginePointer->COLLISION_BELOW(object)) {		// Jos pelaaja meni maan sisään
 
-		object->vSpeed = object->vSpeed * 0.6;
-		object->y -= object->vSpeed * timeInSeconds;
+		object->vSpeed = object->vSpeed * 0.6;		// 0.6 on kerroin nopeuden hidastumiselle, jos pelaaja
+													// joutuu maan sisälle.
+
+		object->y -= object->vSpeed * timeInSeconds;	// Siirrä pelaajaa hieman takaisin
 
 	}
 
