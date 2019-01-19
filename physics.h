@@ -11,11 +11,15 @@
 
 #include "variableType.h"
 #include "gameObject.h"
+#include "tilengine.h"
 
 /* Tämä luokka on pyhitetty fysiikoiden laskemiseen */
 struct physics {
 	void calculateGravity(gameObject * object, longDataType time);	// Objekti jolle fysiikat lasketaan, kiihtyvyys
-																							// ja kulunut aika edellisestä päivityksestä
+																	// ja kulunut aika edellisestä päivityksestä
+
+	void calculateGravity(tilengine * enginePointer, gameObject * object, longDataType time);	// Objekti jolle fysiikat lasketaan, kiihtyvyys
+																	// ja kulunut aika edellisestä päivityksestä
 
 	floatDataType gravity = 200.0f;
 };

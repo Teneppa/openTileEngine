@@ -63,7 +63,8 @@ void mushroomGame::run() {
 
 		/* Tarkista onko pelaaja ilmassa vai maassa */
 		if (!localEngine->COLLISION_BELOW(&player)) {
-			playerPhysics.calculateGravity(&player, millis() - oldUpdateTime);		// Laske painovoima pelaajalle
+			//playerPhysics.calculateGravity(&player, millis() - oldUpdateTime);		// Laske painovoima pelaajalle
+			playerPhysics.calculateGravity(localEngine, &player, millis() - oldUpdateTime);		// Laske painovoima pelaajalle
 		} else {
 			if (io.returnKey(io.KEY_JUMP)) {	// Jos hyppynappia painetaan
 				player.vSpeed = -80.0f;
