@@ -29,8 +29,12 @@ void physics::calculateGravity(tilengine * enginePointer, gameObject * object, l
 	floatDataType timeInSeconds = time / 1000.0f;
 
 	object->y += object->vSpeed * timeInSeconds;		// Muuta objektin sijaintia
-	if (enginePointer->COLLISION_BELOW(object)) {		// Jos pelaaja meni maan sis‰‰n nosta pelaajaa yhdell‰ pikselill‰
-		object->y -= 1;
+
+	if (enginePointer->COLLISION_BELOW(object)) {		// Jos pelaaja meni maan sis‰‰n
+
+		object->vSpeed = object->vSpeed * 0.6;
+		object->y -= object->vSpeed * timeInSeconds;
+
 	}
 
 	object->vSpeed += gravity * timeInSeconds;	// Lis‰‰ kiihtyvyys y-akselin suuntaiseen nopeuteen

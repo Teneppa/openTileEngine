@@ -51,7 +51,7 @@ void mushroomGame::loadLevel(dataType levelToLoad) {
 void mushroomGame::run() {
 
 	/* Päivitä pelifunktiota n. 62,5 kertaa sekunnissa */
-	if (millis() - oldMushroomUpdateTime > 16) {
+	if (millis() - oldMushroomUpdateTime > 8) {
 		draw();	// Piirrä kartta ja pelaaja
 
 		/* Jos pelaaja osuu avaimeen */
