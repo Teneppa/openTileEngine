@@ -25,9 +25,6 @@
     <Filter Include="Header Files\Hardware">
       <UniqueIdentifier>{83e31692-5e1b-4f9e-ba47-a980228ca657}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Not needed">
-      <UniqueIdentifier>{6efe357f-cca7-40a0-bb8c-47cb21cd428e}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="openTileEngine.ino" />
@@ -66,9 +63,6 @@
     <ClInclude Include="mushroomLevels.h">
       <Filter>Header Files\Data</Filter>
     </ClInclude>
-    <ClInclude Include="gameEvent.h">
-      <Filter>Source Files\Not needed</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="mushroomGame.cpp">
@@ -91,9 +85,6 @@
     </ClCompile>
     <ClCompile Include="mushroomLevels.cpp">
       <Filter>Header Files\Data</Filter>
-    </ClCompile>
-    <ClCompile Include="gameEvent.cpp">
-      <Filter>Source Files\Not needed</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

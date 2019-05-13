@@ -108,7 +108,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bitmaps.h" />
-    <ClInclude Include="gameEvent.h" />
     <ClInclude Include="gameObject.h" />
     <ClInclude Include="inputOutput.h" />
     <ClInclude Include="mushroomGame.h" />
@@ -121,7 +120,6 @@
     <ClInclude Include="__vm\.openTileEngine.vsarduino.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="gameEvent.cpp" />
     <ClCompile Include="gameObject.cpp" />
     <ClCompile Include="inputOutput.cpp" />
     <ClCompile Include="mushroomGame.cpp" />

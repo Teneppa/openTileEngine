@@ -14,7 +14,6 @@
 #include "inputOutput.h"
 #include "physics.h"
 #include "mushroomGame.h"
-#include "gameEvent.h"
 #include <Adafruit_SSD1306.h>
 #include <Adafruit_GFX.h>
 #include "variableType.h"
