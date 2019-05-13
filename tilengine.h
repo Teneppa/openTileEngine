@@ -27,6 +27,7 @@ struct tilengine {
 	bitmapDataType * tileBitmap;
 
 	void drawMap();
+	void drawObject(gameObject * obj);
 
 	/* Ruutujen koko, m‰‰r‰ ja varaama muisti */
 	dataType width;

@@ -27,9 +27,16 @@ struct mushroomGame {
 
 	gameObject key;
 
+	gameObject loadedObjects[2];
+
 	dataType currentLevel = 0;
 
 	void loadLevel(dataType levelToLoad);
+	void loadObjects(dataType level);
+
+	void handleLoadedObjects();
+
+	bitmapDataType * getBitmapById(dataType id);
 
 	void initialize(dataType width, dataType height);
 	void assignBitmapDrawingFunction(void(*getFunctionPointer)(dataType x, dataType y, bitmapDataType * bitmap, dataType width, dataType height));	// Hae osoitin piirtofunktioon

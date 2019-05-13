@@ -6,6 +6,9 @@
 
 /*--  --*/
 
+//#define BOARD_VERSION_1
+#define BOARD_VERSION_2
+
 #include "mushroomLevels.h"
 #include "levels.h"
 #include "inputOutput.h"
@@ -30,7 +33,18 @@ Adafruit_SSD1306 oled(OLED_DC, OLED_RESET, OLED_CS);
 
 void beginDisplay() {
 	oled.begin(SSD1306_SWITCHCAPVCC);	// Käytä sisäistä jännitegeneraattoria
-	oled.setRotation(2);				// Pyöräytä kuvaa 180 astetta
+
+	// Miten päin näyttö on asennettu?
+	// V1 = 2 (käännä 180 astetta)
+	// V2 = 0 (älä käännä ollenkaan)
+
+	#ifdef BOARD_VERSION_1
+		oled.setRotation(2);				// Pyöräytä kuvaa 180 astetta (V1)
+	#endif
+
+	#ifdef BOARD_VERSION_2
+		oled.setRotation(0);				// Pyöräytä kuvaa 0 astetta (V2)
+	#endif
 }
 
 tilengine engine(bitmap_block, 16, 8, 8, 8);	// tilengine(kartan leveys, kartan korkeus,
@@ -49,7 +63,7 @@ void bitmapDrawingFunction(dataType x, dataType y, bitmapDataType * bmp, dataTyp
 
 void setup() {
 
-	Serial.begin(115200);
+	//Serial.begin(115200);
 
 	beginDisplay();			// Määritä OLED -juttuja
 

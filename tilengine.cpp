@@ -93,3 +93,8 @@ void tilengine::drawMap() {
 		}
 	}
 }
+
+/*-- Tämä funktio piirtää objektin --*/
+void tilengine::drawObject(gameObject * obj) {
+	pointToBitmapDrawingFunction(obj->x, obj->y, obj->bitmap, obj->width, obj->height);
+}

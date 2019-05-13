@@ -15,13 +15,18 @@
 
 /* Tämä luokka on pyhitetty fysiikoiden laskemiseen */
 struct physics {
+
+	void assignEnginePointer(tilengine * enginePointer);
+
 	void calculateGravity(gameObject * object, longDataType time);	// Objekti jolle fysiikat lasketaan, kiihtyvyys
 																	// ja kulunut aika edellisestä päivityksestä
 
-	void calculateGravity(tilengine * enginePointer, gameObject * object, longDataType time);	// Objekti jolle fysiikat lasketaan, kiihtyvyys
-																	// ja kulunut aika edellisestä päivityksestä
+	void calculateAccelerations(gameObject * object, longDataType time);
 
 	floatDataType gravity = 200.0f;
+
+private:
+	tilengine * m_localEnginePointer;
 };
 
 #endif
