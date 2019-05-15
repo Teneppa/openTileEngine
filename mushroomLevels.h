@@ -28,7 +28,7 @@ void initializeLevelVariables() {
 }
 */
 
-const uint16_t mushroomObjects[numberOfMushroomObjects * numberOfMushroomObjectVariables * 2] = {
+const uint16_t mushroomObjects[numberOfMushroomObjects * numberOfMushroomObjectVariables * 5] = {
 	// x(ruutua),y(ruutua),width,height,bitmap id
 
 	/* Level 1 */
@@ -36,7 +36,19 @@ const uint16_t mushroomObjects[numberOfMushroomObjects * numberOfMushroomObjectV
 	10,6,8,8,1,
 
 	/* Level 2 */
-	11,6,8,8,0,
+	11,6,8,8,1,
+	10,6,8,8,1,
+
+	/* Level 3 */
+	6,6,8,8,1,
+	10,6,8,8,1,
+
+	/* Level 4 */
+	8,6,8,8,1,
+	10,6,8,8,1,
+
+	/* Level 5 */
+	4,6,8,8,1,
 	10,6,8,8,1
 };
 

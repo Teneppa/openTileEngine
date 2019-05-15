@@ -60,7 +60,7 @@ bitmapDataType * mushroomGame::getBitmapById(dataType id) {
 
 /*-- Lataa halutun tason objektit --*/
 void mushroomGame::loadObjects(dataType level) {
-	if (level < 0 || level >= numberOfMushroomLevels) {
+	if (level < 0 || level > numberOfMushroomLevels) {
 		return;
 	}
 
@@ -69,7 +69,7 @@ void mushroomGame::loadObjects(dataType level) {
 	loadedObjects[0].y = mushroomObjects[1 + level * dataPerLevel] * 8;
 	loadedObjects[0].width = mushroomObjects[2 + level * dataPerLevel];
 	loadedObjects[0].height = mushroomObjects[3 + level * dataPerLevel];
-	loadedObjects[0].bitmap = spike;
+	loadedObjects[0].bitmap = getBitmapById(mushroomObjects[4 + level * dataPerLevel]);
 
 	loadedObjects[1].x = mushroomObjects[5 + level * dataPerLevel] * 8;
 	loadedObjects[1].y = mushroomObjects[6 + level * dataPerLevel] * 8;
@@ -166,10 +166,19 @@ void mushroomGame::run() {
 	
 }
 
+
 void mushroomGame::handleLoadedObjects() {
+	// Jos pelaaja törmää objektiin 0 ja se on piikki
 	if (loadedObjects[0].bitmap == getBitmapById(1)) {
 		if (loadedObjects[0].collidesWithGameobject(&player)) {
-			initialize(8,8);
+			loadLevel(currentLevel);
+		}
+	}
+
+	// Jos pelaaja törmää objektiin 1 ja se on piikki
+	if (loadedObjects[1].bitmap == getBitmapById(1)) {
+		if (loadedObjects[1].collidesWithGameobject(&player)) {
+			loadLevel(currentLevel);
 		}
 	}
 }
